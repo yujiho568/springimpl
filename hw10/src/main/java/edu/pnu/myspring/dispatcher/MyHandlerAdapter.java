@@ -29,7 +29,7 @@ public class MyHandlerAdapter {
 
         String responseBody = result.toString();
 
-        return new UserResponse(200, responseBody);
+        return UserResponse.success(responseBody);
     }
 
 }
