@@ -36,5 +36,13 @@ public class UserResponse<T> {
 
     }
 
+    @Override
+    public String toString() {
+        return "UserResponse{" +
+                "data=" + data +
+                ", message='" + message + '\'' +
+                ", success=" + success +
+                '}';
+    }
 }
 

@@ -18,7 +18,7 @@ public class MySpringApplicationRunner {
 
 
         //displayBanner();
-        String basePackage = clazz.getPackageName();
+        String basePackage = clazz.getPackage().getName();
 
         MyApplicationContext context = new MyApplicationContext(basePackage);
 
