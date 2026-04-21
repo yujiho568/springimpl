@@ -1,7 +1,7 @@
 package edu.pnu.myspring.dispatcher;
 
 import edu.pnu.myspring.annotations.MyRequestMapping;
-import edu.pnu.myspring.annotations.PostMapping;
+import edu.pnu.myspring.annotations.MyPostMapping;
 
 import java.lang.reflect.Method;
 
@@ -13,7 +13,7 @@ public class MyHandlerAdapter {
     }
     public boolean supports(Object handler){
         return (handler instanceof Method) &&
-                (((Method)handler).isAnnotationPresent(MyRequestMapping.class)||((Method)handler).isAnnotationPresent(PostMapping.class));
+                (((Method)handler).isAnnotationPresent(MyRequestMapping.class)||((Method)handler).isAnnotationPresent(MyPostMapping.class));
     }
 
     public UserResponse handle(UserRequest userRequest, Object handler, Object[] args) throws Exception {
@@ -21,7 +21,7 @@ public class MyHandlerAdapter {
             throw new IllegalArgumentException("Handler is not a method");
         }
         if(!supports(handler)){
-            throw new IllegalArgumentException("Handler method is not annotated with MyRequestMapping or PostMapping");
+            throw new IllegalArgumentException("Handler method is not annotated with MyRequestMapping or MyPostMapping");
         }
         Method method = (Method) handler;
         Object controller = handlerMapping.getControllerForMethod(method);

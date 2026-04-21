@@ -1,8 +1,8 @@
 package edu.pnu.myspring.dispatcher;
 
 import edu.pnu.myspring.annotations.MyRequestMapping;
-import edu.pnu.myspring.annotations.PathVariable;
-import edu.pnu.myspring.annotations.PostMapping;
+import edu.pnu.myspring.annotations.MyPathVariable;
+import edu.pnu.myspring.annotations.MyPostMapping;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -30,8 +30,8 @@ public class MyHandlerMapping {
                     String key = generateKeyPattern(get.method(), get.value());
                     handlerMappings.put(key,method);
                     patternMappings.put(key, convertToPattern(key));
-                }else if(method.isAnnotationPresent(PostMapping.class)){
-                    PostMapping post = method.getAnnotation(PostMapping.class);
+                }else if(method.isAnnotationPresent(MyPostMapping.class)){
+                    MyPostMapping post = method.getAnnotation(MyPostMapping.class);
                     String key = generateKeyPattern(post.method(), post.value());
                     handlerMappings.put(key,method);
                     patternMappings.put(key, convertToPattern(key));
@@ -95,7 +95,7 @@ public class MyHandlerMapping {
 
         for (int i = 0; i < parameters.length; i++) {
             Parameter parameter = parameters[i];
-            PathVariable pathVariableAnnotation = parameter.getAnnotation(PathVariable.class);
+            MyPathVariable pathVariableAnnotation = parameter.getAnnotation(MyPathVariable.class);
             if(pathVariableAnnotation!=null){
                 String pathVariableName = pathVariableAnnotation.value();
                 if(params.containsKey(pathVariableName)){
